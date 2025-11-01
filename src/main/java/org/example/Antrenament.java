@@ -7,10 +7,15 @@ public class Antrenament {
         MEDIU,
         GREU
     };
+    private String denumire;
+    private Integer durata;
     private NivelIntensitate intensitate;
     private double pret;
+    private Antrenor antrenor=null;
 
-    public Antrenament(NivelIntensitate nivel, double pret) {
+    public Antrenament(String denumire, Integer durata, NivelIntensitate nivel, double pret) {
+        this.denumire=denumire;
+        this.durata=durata;
         this.intensitate = nivel;
         this.pret = pret;
     }
@@ -22,5 +27,20 @@ public class Antrenament {
     public double getPret() {
         return pret;
     }
-    
+
+    public String getDenumire() {
+        return denumire;
+    }
+
+    public Integer getDurata() {
+        return durata;
+    }
+
+    public Antrenor getAntrenor() {
+        return antrenor;
+    }
+
+    public void setAntrenor(Antrenor antrenor) {
+        this.antrenor = antrenor;
+    }
 }

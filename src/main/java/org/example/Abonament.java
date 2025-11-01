@@ -11,6 +11,10 @@ public abstract class Abonament {
         this.durataLuni = durataLuni;
     }
 
+    public void getInfo()
+    {
+        System.out.println("Abonamentul "+this.getTip()+" cu pretul "+this.getPret()+" de lei cu durata de "+this.getDurataLuni()+" luni.");
+    }
     public abstract String getTip();
 
     public double getPret() {
