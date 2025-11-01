@@ -5,8 +5,13 @@ public class Standard extends Abonament{
     private double pret;
     private int durataLuni;
 
-    public Standard(String tip, double pret, int durataLuni) {
-        super(tip, pret, durataLuni);
+    public Standard(double pret, int durataLuni) {
+        super(pret, durataLuni);
+    }
+
+    public String getTip()
+    {
+        return tip;
     }
 
 }

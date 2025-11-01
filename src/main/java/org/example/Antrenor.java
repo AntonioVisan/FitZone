@@ -1,21 +1,14 @@
 package org.example;
 
-public class Antrenor {
+public abstract class Antrenor {
     private String nume;
     private String specializare;
     private Integer age;
 
-    public enum TipAngajat {
-        ANGAJAT_PERMANENT,
-        COLABORATOR_EXTERN
-    }
-
-    private TipAngajat tip;
-    public Antrenor(String nume, String specializare, Integer age, TipAngajat tip) {
+    public Antrenor(String nume, String specializare, Integer age) {
         this.nume = nume;
         this.specializare = specializare;
         this.age = age;
-        this.tip = tip;
     }
 
     public String getNume() {
@@ -30,7 +23,5 @@ public class Antrenor {
         return age;
     }
 
-    public TipAngajat getTip() {
-        return tip;
-    }
+    public abstract String getTip();
 }

@@ -1,19 +1,17 @@
 package org.example;
 
-public class Abonament {
-    private String tip;
+public abstract class Abonament {
+
     private double pret;
     private int durataLuni;
 
-    public Abonament(String tip, double pret, int durataLuni) {
-        this.tip = tip;
+    public Abonament(double pret, int durataLuni)
+    {
         this.pret = pret;
         this.durataLuni = durataLuni;
     }
 
-    public String getTip() {
-        return tip;
-    }
+    public abstract String getTip();
 
     public double getPret() {
         return pret;
@@ -22,6 +20,4 @@ public class Abonament {
     public int getDurataLuni() {
         return durataLuni;
     }
-
-
 }

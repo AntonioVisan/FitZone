@@ -5,7 +5,12 @@ public class Premium extends Abonament{
     private double pret;
     private int durataLuni;
 
-    public Premium(String tip, double pret, int durataLuni) {
-        super(tip, pret, durataLuni);
+    public Premium(double pret, int durataLuni) {
+        super(pret, durataLuni);
+    }
+
+    public String getTip()
+    {
+        return tip;
     }
 }
