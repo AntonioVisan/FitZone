@@ -1,7 +1,7 @@
 package org.example;
 
 public class Antrenament {
-
+    //antrenament
     public enum NivelIntensitate{
         USOR,
         MEDIU,

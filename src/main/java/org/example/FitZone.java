@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FitZone implements Fitness{
-
+//fitzone
     private final ArrayList<Antrenor> antrenori;
     private final ArrayList<Client> clienti;
     private final ArrayList<Antrenament> antrenamente;

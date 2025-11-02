@@ -2,7 +2,7 @@ package org.example;
 
 public abstract class Abonament {
 
-    private double pret;
+    private double pret; //pret
     private final int durataLuni;
 
     public Abonament(double pret, int durataLuni)

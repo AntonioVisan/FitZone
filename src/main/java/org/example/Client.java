@@ -1,6 +1,7 @@
 package org.example;
 import java.util.ArrayList;
 public class Client {
+    //client
     private final String nume;
     private final Integer varsta;
     private final ArrayList <Abonament> abonamente=new ArrayList<>();

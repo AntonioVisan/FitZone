@@ -1,6 +1,7 @@
 package org.example;
 
 public class Colaborator extends Antrenor{
+    //colaborator
     private final String companie;
 
     public Colaborator(String nume, String specializare, int age, String companie) {

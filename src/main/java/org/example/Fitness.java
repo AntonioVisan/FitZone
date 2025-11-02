@@ -2,6 +2,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Scanner;
 public interface Fitness {
+    //fitness
     void angajeazaAntrenor(Antrenor antrenor);
     void insereazaAntrenamente(Antrenament antrenament);
     void inserareClient(Client client);

@@ -1,6 +1,7 @@
 package org.example;
 import java.util.ArrayList;
 public abstract class Antrenor {
+    //antrenor
     private final String nume;
     private final String specializare;
     private final Integer age;
