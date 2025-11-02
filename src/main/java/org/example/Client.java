@@ -1,11 +1,10 @@
 package org.example;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class Client {
-    private String nume;
-    private Integer varsta;
-    private ArrayList <Abonament> abonamente=new ArrayList<>();
-    private ArrayList <Antrenament> antrenamente=new ArrayList<>();
+    private final String nume;
+    private final Integer varsta;
+    private final ArrayList <Abonament> abonamente=new ArrayList<>();
+    private final ArrayList <Antrenament> antrenamente=new ArrayList<>();
     public Client(String name, Integer varsta, Abonament abonament) {
         this.nume = name;
         this.varsta = varsta;
@@ -16,22 +15,14 @@ public class Client {
         return nume;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
-    }
-
-    public Integer getVarsta() {
-        return varsta;
-    }
-
-    public void setVarsta(Integer varsta) {
-        this.varsta = varsta;
-    }
-
     public ArrayList<Abonament> getAbonamente() {
         return abonamente;
     }
 
+    public ArrayList<Antrenament> getAntrenamente()
+    {
+        return antrenamente;
+    }
     public void adaugaAntrenament(Antrenament antrenament) {
         this.antrenamente.add(antrenament);
     }
@@ -41,5 +32,9 @@ public class Client {
     }
     public void getInfo() {
         System.out.println("Clientul: " + nume + " cu varsta de " + varsta + " de ani. ");
+    }
+    public int AntrenamenteCumparate()
+    {
+        return this.antrenamente.size();
     }
 }

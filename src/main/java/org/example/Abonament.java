@@ -3,7 +3,7 @@ package org.example;
 public abstract class Abonament {
 
     private double pret;
-    private int durataLuni;
+    private final int durataLuni;
 
     public Abonament(double pret, int durataLuni)
     {
@@ -23,5 +23,16 @@ public abstract class Abonament {
 
     public int getDurataLuni() {
         return durataLuni;
+    }
+
+    public void aplicaReducere()
+    {
+        if (this.durataLuni >= 12) //daca abonamentul are o durata de minim 12 luni, se aplica o reducere de 20% la pret
+        {
+            System.out.println("A fost aplicata o reducere de 20% la pretul abonamentului.");
+            System.out.println("Initial, pretul era: "+this.pret);
+            this.pret = this.pret * 0.8;
+            System.out.println("Acum, pretul este: "+this.pret);
+        }
     }
 }

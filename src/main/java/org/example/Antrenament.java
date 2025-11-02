@@ -6,10 +6,10 @@ public class Antrenament {
         USOR,
         MEDIU,
         GREU
-    };
-    private String denumire;
-    private Integer durata;
-    private NivelIntensitate intensitate;
+    }
+    private final String denumire;
+    private final Integer durata;
+    private final NivelIntensitate intensitate;
     private double pret;
     private Antrenor antrenor=null;
 
@@ -42,5 +42,20 @@ public class Antrenament {
 
     public void setAntrenor(Antrenor antrenor) {
         this.antrenor = antrenor;
+    }
+
+    public void getInfo()
+    {
+        if(getAntrenor()==null)
+            System.out.println("Antrenamentul " + getDenumire() + " are durata de " + getDurata() + " minute, cu nivelul de dificultate " + getIntensitate() + ", avand pretul de " + getPret() + " lei. Acest antrenament nu este predat de niciun antrenor.");
+        else
+            System.out.println("Antrenamentul " + getDenumire() + " are durata de " + getDurata() + " minute, cu nivelul de dificultate " + getIntensitate() + ", avand pretul de " + getPret() + " lei. Acest antrenament este predat de "+ getAntrenor().getNume()+".");
+    }
+    public void aplicaReducere()
+    {
+        System.out.println("A fost aplicata o reducere de 10% la pretul antrenamentului pentru cumpararea a 3 antrenamente.");
+        System.out.println("Initial, pretul era: "+this.pret);
+        pret=pret*0.9; //se aplica reducere de 10% la cate 3 abonamente cumparate
+        System.out.println("Acum, pretul este: "+this.pret);
     }
 }

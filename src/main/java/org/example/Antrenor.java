@@ -1,10 +1,10 @@
 package org.example;
 import java.util.ArrayList;
 public abstract class Antrenor {
-    private String nume;
-    private String specializare;
-    private Integer age;
-    private ArrayList<Antrenament> antrenamente=new ArrayList<>();
+    private final String nume;
+    private final String specializare;
+    private final Integer age;
+    private final ArrayList<Antrenament> antrenamente=new ArrayList<>();
     public Antrenor(String nume, String specializare, Integer age) {
         this.nume = nume;
         this.specializare = specializare;
