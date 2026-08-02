@@ -4,19 +4,19 @@ public class Client {
     //client
     private final String nume;
     private final Integer varsta;
-    private final ArrayList <Abonament> abonamente=new ArrayList<>();
+    private final ArrayList <Membership> abonamente=new ArrayList<>();
     private final ArrayList <Antrenament> antrenamente=new ArrayList<>();
-    public Client(String name, Integer varsta, Abonament abonament) {
+    public Client(String name, Integer varsta, Membership membership) {
         this.nume = name;
         this.varsta = varsta;
-        this.abonamente.add(abonament);
+        this.abonamente.add(membership);
     }
 
     public String getNume() {
         return nume;
     }
 
-    public ArrayList<Abonament> getAbonamente() {
+    public ArrayList<Membership> getAbonamente() {
         return abonamente;
     }
 
@@ -28,8 +28,8 @@ public class Client {
         this.antrenamente.add(antrenament);
     }
 
-    public void adaugaAbonament(Abonament abonament) {
-        this.abonamente.add(abonament);
+    public void adaugaAbonament(Membership membership) {
+        this.abonamente.add(membership);
     }
     public void getInfo() {
         System.out.println("Clientul: " + nume + " cu varsta de " + varsta + " de ani. ");

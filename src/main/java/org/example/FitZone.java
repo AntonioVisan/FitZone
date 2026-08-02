@@ -130,16 +130,16 @@ public class FitZone implements Fitness{
             int optiune = input.nextInt();
             input.nextLine(); //consumare enter
             if (optiune == 1) {
-                Abonament standard = new Standard(pret, durata);
-                standard.aplicaReducere(); //verifica daca se poate aplica reducerea
+                Membership standard = new Standard(pret, durata);
+                standard.applyDiscount(); //verifica daca se poate aplica reducerea
                 //daca abonamentul are o durata de minim 12 luni, se aplica o reducere de 20% la pret
                 client.adaugaAbonament(standard);
                 System.out.println("Abonament Standard adaugat cu succes.");
                 break;
             }
             if (optiune == 2) {
-                Abonament premium = new Premium(pret, durata);
-                premium.aplicaReducere(); //verifica daca se poate aplica reducerea
+                Membership premium = new Premium(pret, durata);
+                premium.applyDiscount(); //verifica daca se poate aplica reducerea
                 //daca abonamentul are o durata de minim 12 luni, se aplica o reducere de 20% la pret
                 client.adaugaAbonament(premium);
                 System.out.println("Abonament Premium adaugat cu succes.");
@@ -267,8 +267,8 @@ public class FitZone implements Fitness{
         }
         for (Client client : clienti) {
             System.out.println("Abonamentele achizitionate de clientul " + client.getNume() + " sunt:");
-            for (Abonament abonament : client.getAbonamente()) {
-                abonament.getInfo();
+            for (Membership membership : client.getAbonamente()) {
+                membership.getMembershipType();
             }
         }
     }
@@ -374,8 +374,8 @@ public class FitZone implements Fitness{
             else
             {
                 System.out.println("Abonamentele achizitionate de acest client sunt:");
-                for (Abonament abonament : client.getAbonamente())
-                    abonament.getInfo();
+                for (Membership membership : client.getAbonamente())
+                    System.out.println("- " + membership.getMembershipType());
             }
             if(client.AntrenamenteCumparate()==0)
                 System.out.println("Acest client nu a cumparat niciun antrenament.");

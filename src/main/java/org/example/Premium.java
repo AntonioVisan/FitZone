@@ -1,12 +1,12 @@
 package org.example;
 
-public class Premium extends Abonament{
+public class Premium extends Membership {
     //premium
     public Premium(double pret, int durataLuni) {
         super(pret, durataLuni);
     }
 
-    public String getTip()
+    public String getMembershipType()
     {
         return "Premium";
     }
