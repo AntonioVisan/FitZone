@@ -5,7 +5,7 @@ public class Client {
     private final String nume;
     private final Integer varsta;
     private final ArrayList <Membership> abonamente=new ArrayList<>();
-    private final ArrayList <Antrenament> antrenamente=new ArrayList<>();
+    private final ArrayList <Workout> antrenamente=new ArrayList<>();
     public Client(String name, Integer varsta, Membership membership) {
         this.nume = name;
         this.varsta = varsta;
@@ -20,12 +20,12 @@ public class Client {
         return abonamente;
     }
 
-    public ArrayList<Antrenament> getAntrenamente()
+    public ArrayList<Workout> getAntrenamente()
     {
         return antrenamente;
     }
-    public void adaugaAntrenament(Antrenament antrenament) {
-        this.antrenamente.add(antrenament);
+    public void adaugaAntrenament(Workout workout) {
+        this.antrenamente.add(workout);
     }
 
     public void adaugaAbonament(Membership membership) {

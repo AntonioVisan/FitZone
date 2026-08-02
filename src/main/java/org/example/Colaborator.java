@@ -1,6 +1,6 @@
 package org.example;
 
-public class Colaborator extends Antrenor{
+public class Colaborator extends Trainer{
     //colaborator
     private final String companie;
 
@@ -13,7 +13,7 @@ public class Colaborator extends Antrenor{
         return companie;
     }
 
-    public String getTip()
+    public String getTrainerType()
     {
         return "Colaborator extern";
     }

@@ -1,6 +1,6 @@
 package org.example;
 
-public class Angajat extends Antrenor{
+public class Angajat extends Trainer{
     private final double salariu; //salariu
 
     public Angajat(String nume, String specializare, Integer age, double salariu) {
@@ -12,7 +12,7 @@ public class Angajat extends Antrenor{
         return salariu;
     }
 
-    public String getTip()
+    public String getTrainerType()
     {
         return "Angajat permanent";
     }

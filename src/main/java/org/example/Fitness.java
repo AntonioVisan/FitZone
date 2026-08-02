@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public interface Fitness {
     //fitness
-    void angajeazaAntrenor(Antrenor antrenor);
-    void insereazaAntrenamente(Antrenament antrenament);
+    void angajeazaAntrenor(Trainer antrenor);
+    void insereazaAntrenamente(Workout workout);
     void inserareClient(Client client);
     void adaugareAntrenor(Scanner input);
     void adaugareClient(Scanner input);
@@ -13,17 +13,17 @@ public interface Fitness {
     void adaugareAntrenamentForAntrenor(Scanner input);
     void adaugareAntrenamentForClient(Scanner input);
     Client selecteazaClient(Scanner input, String mesaj);
-    Antrenor selecteazaAntrenor(Scanner input, String mesaj);
-    Antrenament selecteazaAntrenament(Scanner input, Client client);
-    Antrenament selecteazaAntrenament(Scanner input, Antrenor antrenor);
+    Trainer selecteazaAntrenor(Scanner input, String mesaj);
+    Workout selecteazaAntrenament(Scanner input, Client client);
+    Workout selecteazaAntrenament(Scanner input, Trainer antrenor);
     void afiseazaAbonamente();
     void afiseazaAntrenori();
     void afiseazaAntrenamente();
     void afiseazaAntrenamente(String denumire);
     ArrayList<Client> getClienti();
-    ArrayList<Antrenor> getAntrenori();
-    ArrayList<Antrenament> getAntrenamente();
-    ArrayList<Antrenament> getAntrenamenteDisponibileDupaDenumire(String denumire);
+    ArrayList<Trainer> getAntrenori();
+    ArrayList<Workout> getAntrenamente();
+    ArrayList<Workout> getAntrenamenteDisponibileDupaDenumire(String denumire);
     void afiseazaClienti();
     void afiseazaClientiDetaliat();
     void generareRaport();
