@@ -46,7 +46,7 @@ public class FitZone implements Fitness{
                 System.out.println("Introdu de la tastatura salariul angajatului:");
                 double salariu = input.nextDouble();
                 input.nextLine(); //consumare enter
-                angajeazaAntrenor(new Angajat(nume, specializare, varsta, salariu));
+                angajeazaAntrenor(new Employee(nume, specializare, varsta, salariu));
                 System.out.println("Antrenor angajat cu succes.");
                 break;
             }
@@ -283,8 +283,8 @@ public class FitZone implements Fitness{
         for (Trainer antrenor : antrenori) {
             System.out.print(indexAntrenor + ". ");
             indexAntrenor++;
-            if (antrenor instanceof Angajat)
-                System.out.println("Antrenorul " + antrenor.getName() + " cu varsta de " + antrenor.getAge() + " ani cu specializarea " + antrenor.getSpecialization() + " care reprezinta un " + antrenor.getTrainerType() + " avand salariul de " + (((Angajat) antrenor).getSalariu()) + " lei.");
+            if (antrenor instanceof Employee)
+                System.out.println("Antrenorul " + antrenor.getName() + " cu varsta de " + antrenor.getAge() + " ani cu specializarea " + antrenor.getSpecialization() + " care reprezinta un " + antrenor.getTrainerType() + " avand salariul de " + (((Employee) antrenor).getSalary()) + " lei.");
             else if (antrenor instanceof Colaborator)
                 System.out.println("Antrenorul " + antrenor.getName() + " cu varsta de " + antrenor.getAge() + " ani cu specializarea " + antrenor.getSpecialization() + " care reprezinta un " + antrenor.getTrainerType() + " reprezentat de compania " + ((Colaborator) antrenor).getCompanie());
             if (antrenor.getWorkouts().isEmpty())
