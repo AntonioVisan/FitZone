@@ -1,13 +1,13 @@
 package org.example;
 
 public class Premium extends Membership {
-    //premium
-    public Premium(double pret, int durataLuni) {
-        super(pret, durataLuni);
+
+    public Premium(final double price, final int durationMonths) {
+        super(price, durationMonths);
     }
 
-    public String getMembershipType()
-    {
+    @Override
+    public String getMembershipType() {
         return "Premium";
     }
 }
