@@ -33,49 +33,50 @@ public class FitZone implements Fitness {
 
     @Override
     public void addTrainer(final Scanner input) {
-        System.out.println("Introdu de la tastatura numele antrenorului: ");
+        System.out.println("Enter trainer name: ");
         String name = input.nextLine();
-        System.out.println("Introdu de la tastatura specializarea antrenorului: ");
+        System.out.println("Enter trainer specialization: ");
         String specialization = input.nextLine();
-        System.out.println("Introdu de la tastatura varsta antrenorului: ");
+        System.out.println("Enter trainer age: ");
         int age = input.nextInt();
         input.nextLine();
         while (true) {
-            System.out.println("Ce antrenor doresti sa angajezi?");
-            System.out.println("1) Angajat permanent");
-            System.out.println("2) Colaborator extern");
+            System.out.println("Choose trainer type:");
+            System.out.println("1) Permanent employee");
+            System.out.println("2) External collaborator");
             int option = input.nextInt();
             input.nextLine();
             if (option == 1) {
-                System.out.println("Introdu de la tastatura salariul angajatului:");
+                System.out.println("Enter employee salary:");
                 double salary = input.nextDouble();
                 input.nextLine();
                 hireTrainer(new Employee(name, specialization, age, salary));
-                System.out.println("Antrenor angajat cu succes.");
+                System.out.println("Trainer hired successfully.");
                 break;
-            }
-            if (option == 2) {
-                System.out.println("Introdu de la tastatura compania colaboratorului:");
+            } else if (option == 2) {
+                System.out.println("Enter collaborator company:");
                 String company = input.nextLine();
                 hireTrainer(new Collaborator(name, specialization, age, company));
-                System.out.println("Colaborator angajat cu succes.");
+                System.out.println("Collaborator hired successfully.");
                 break;
-            } else System.out.println("Valoare incorecta. Mai introdu o data o optiune.");
+            } else {
+                System.out.println("Invalid value. Please enter a valid option.");
+            }
         }
     }
 
     @Override
     public Client selectClient(final Scanner input, final String message) {
         if (getClients().isEmpty()) {
-            System.out.println("Nu exista clienti inregistrati.");
+            System.out.println("No clients registered.");
             return null;
         }
         System.out.println(message);
         displayClients();
         int clientIndex = input.nextInt();
         input.nextLine();
-        if (!(clientIndex >= 1 && clientIndex <= getClients().size())) {
-            System.out.println("Index invalid pentru client. Mai incearca o data.");
+        if (clientIndex < 1 || clientIndex > getClients().size()) {
+            System.out.println("Invalid index for client. Please try again.");
             return null;
         }
         return getClients().get(clientIndex - 1);
@@ -83,93 +84,105 @@ public class FitZone implements Fitness {
 
     @Override
     public void addClient(final Scanner input) {
-        System.out.println("Introdu de la tastatura numele clientului: ");
+        System.out.println("Enter client name: ");
         String name = input.nextLine();
-        System.out.println("Introdu de la tastatura varsta clientului: ");
+        System.out.println("Enter client age: ");
         int age = input.nextInt();
         input.nextLine();
-        System.out.println("Introdu de la tastatura pretul abonamentului pentru client: ");
+        System.out.println("Enter membership price: ");
         double price = input.nextDouble();
         input.nextLine();
-        System.out.println("Introdu de la tastatura durata in luni a abonamentului pentru client: ");
+        System.out.println("Enter membership duration (months): ");
         int durationMonths = input.nextInt();
         input.nextLine();
         while (true) {
-            System.out.println("Introdu de la tastatura tipul abonamentului dorit pentru client: ");
-            System.out.println("1) Abonament Standard.");
-            System.out.println("2) Abonament Premium.");
+            System.out.println("Enter the desired membership type for client: ");
+            System.out.println("1) Standard Membership.");
+            System.out.println("2) Premium Membership.");
             int option = input.nextInt();
             input.nextLine();
             if (option == 1) {
                 addClient(new Client(name, age, new Standard(price, durationMonths)));
-                System.out.println("Clientul si abonamentul Standard au fost adaugati cu succes.");
+                System.out.println("The client and Standard membership have been added successfully.");
                 break;
-            }
-            if (option == 2) {
+            } else if (option == 2) {
                 addClient(new Client(name, age, new Premium(price, durationMonths)));
-                System.out.println("Clientul si abonamentul Premium au fost adaugati cu succes.");
+                System.out.println("The client and Premium membership have been added successfully.");
                 break;
-            } else System.out.println("Valoare incorecta. Mai introdu o data o optiune.");
+            } else {
+                System.out.println("Invalid value. Please enter a valid option.");
+            }
         }
     }
 
     @Override
     public void addMembershipForClient(final Scanner input) {
-        Client client = selectClient(input, "Selecteaza index-ul clientului caruia doresti sa ii adaugi un abonament: ");
-        if (client == null) return;
-        System.out.println("Introdu de la tastatura pretul abonamentului: ");
+        Client client = selectClient(input, "Select the index of the client for whom you want to add a membership: ");
+        if (client == null) {
+            return;
+        }
+        System.out.println("Enter the price of the membership: ");
         double price = input.nextDouble();
         input.nextLine();
-        System.out.println("Introdu de la tastatura durata in luni a abonamentului: ");
+        System.out.println("Enter membership duration (months): ");
         int durationMonths = input.nextInt();
         input.nextLine();
         while (true) {
-            System.out.println("Introdu de la tastatura tipul abonamentului dorit: ");
-            System.out.println("1) Abonament Standard.");
-            System.out.println("2) Abonament Premium.");
+            System.out.println("Enter the desired membership type: ");
+            System.out.println("1) Standard Membership.");
+            System.out.println("2) Premium Membership.");
             int option = input.nextInt();
             input.nextLine();
             if (option == 1) {
                 Membership standard = new Standard(price, durationMonths);
                 standard.applyDiscount();
                 client.addMembership(standard);
-                System.out.println("Abonament Standard adaugat cu succes.");
+                System.out.println("Standard membership added successfully.");
                 break;
-            }
-            if (option == 2) {
+            } else if (option == 2) {
                 Membership premium = new Premium(price, durationMonths);
                 premium.applyDiscount();
                 client.addMembership(premium);
-                System.out.println("Abonament Premium adaugat cu succes.");
+                System.out.println("Premium membership added successfully.");
                 break;
-            } else System.out.println("Valoare incorecta. Mai introdu o data o optiune.");
+            } else System.out.println("Invalid value. Please enter a valid option.");
         }
     }
 
     @Override
     public void addWorkoutForClient(final Scanner input) {
-        Client client = selectClient(input, "Selecteaza index-ul clientului caruia doresti sa ii adaugi un antrenament: ");
-        if (client == null) return;
+        Client client = selectClient(input, "Select the index of the client for whom you want to add a workout: ");
+
+        if (client == null) {
+            return;
+        }
+
         Workout workout = selectWorkout(input, client);
-        if (workout == null) return;
-        if (client.getPurchasedWorkoutsCount() % 3 == 0 && client.getPurchasedWorkoutsCount() > 0) //daca are multiplu de 3 antrenamente cumparate, se aplica o reducere de 10% la pret
+        if (workout == null) {
+            return;
+        }
+
+        // Apply a discount after every third purchased workout.
+        if (client.getPurchasedWorkoutsCount() % 3 == 0 && client.getPurchasedWorkoutsCount() > 0) {
             workout.applyDiscount();
+        }
+
         client.addWorkout(workout);
-        System.out.println("Antrenamentul a fost adaugat cu succes clientului " + client.getName() + ".");
+        System.out.println("Workout added successfully to client " + client.getName() + ".");
     }
 
     @Override
     public Trainer selectTrainer(final Scanner input, final String message) {
         if (getTrainers().isEmpty()) {
-            System.out.println("Nu exista antrenori inregistrati.");
+            System.out.println("No trainers registered.");
             return null;
         }
         System.out.println(message);
         displayTrainers();
         int trainerIndex = input.nextInt();
         input.nextLine();
-        if (!(trainerIndex >= 1 && trainerIndex <= getTrainers().size())) {
-            System.out.println("Index invalid pentru antrenor. Mai incearca o data.");
+        if (trainerIndex < 1 || trainerIndex > getTrainers().size()) {
+            System.out.println("Invalid index for trainer. Please try again.");
             return null;
         }
         return getTrainers().get(trainerIndex - 1);
@@ -177,12 +190,12 @@ public class FitZone implements Fitness {
 
     @Override
     public Workout selectWorkout(final Scanner input, final Client client) {
-        System.out.println("Selecteaza index-ul antrenamentului pe care doresti sa-l atribui clientului " + client.getName() + ": ");
+        System.out.println("Select the index of the workout you want to assign to the client " + client.getName() + ": ");
         displayWorkouts();
         int indexWorkout = input.nextInt();
         input.nextLine();
-        if (!(indexWorkout >= 1 && indexWorkout <= getWorkouts().size())) {
-            System.out.println("Index invalid pentru antrenament. Mai incearca o data.");
+        if (indexWorkout < 1 || indexWorkout > getWorkouts().size()) {
+            System.out.println("Invalid index for workout. Please try again.");
             return null;
         }
         return getWorkouts().get(indexWorkout - 1);
@@ -192,16 +205,16 @@ public class FitZone implements Fitness {
     public Workout selectWorkout(final Scanner input, final Trainer trainer) {
         List<Workout> availableWorkouts = getAvailableWorkoutsByName(trainer.getSpecialization());
         if (availableWorkouts.isEmpty()) {
-            System.out.println("Nu exista antrenamente inregistrate.");
+            System.out.println("No workouts registered.");
             return null;
         }
 
-        System.out.println("Selecteaza index-ul antrenamentului pe care doresti sa-l atribui antrenorului " + trainer.getName() + ": ");
+        System.out.println("Select the index of the workout you want to assign to the trainer " + trainer.getName() + ": ");
         displayWorkouts(trainer.getSpecialization());
         int indexWorkout = input.nextInt();
         input.nextLine();
-        if (!(indexWorkout >= 1 && indexWorkout <= availableWorkouts.size())) {
-            System.out.println("Index invalid pentru antrenament. Mai incearca o data.");
+        if (indexWorkout < 1 || indexWorkout > availableWorkouts.size()) {
+            System.out.println("Invalid index for workout. Please try again.");
             return null;
         }
         return availableWorkouts.get(indexWorkout - 1);
@@ -209,111 +222,136 @@ public class FitZone implements Fitness {
 
     @Override
     public void addWorkoutForTrainer(final Scanner input) {
-        Trainer trainer = selectTrainer(input, "Selecteaza index-ul antrenorului caruia doresti sa ii adaugi un antrenament: ");
-        if (trainer == null) return;
+        Trainer trainer = selectTrainer(input, "Select the index of the trainer for whom you want to add a workout: ");
+
+        if (trainer == null) {
+            return;
+        }
+
         Workout workout = selectWorkout(input, trainer);
-        if (workout == null) return;
+
+        if (workout == null) {
+            return;
+        }
+
         workout.setTrainer(trainer);
         trainer.addWorkout(workout);
-        System.out.println("Antrenamentul a fost atribuit cu succes antrenorului " + trainer.getName() + ".");
+        System.out.println("Workout added successfully to trainer " + trainer.getName() + ".");
     }
 
     @Override
     public void addWorkout(final Scanner input) {
-        System.out.println("Introdu de la tastatura denumirea antrenamentului: ");
+        System.out.println("Enter the name of the workout: ");
         String name = input.nextLine();
-        System.out.println("Introdu de la tastatura durata antrenamentului in minute: ");
+        System.out.println("Enter the duration of the workout in minutes: ");
         int durationMinutes = input.nextInt();
         input.nextLine();
-        System.out.println("Introdu de la tastatura pretul antrenamentului: ");
+        System.out.println("Enter the price of the workout: ");
         double price = input.nextDouble();
         input.nextLine();
         while (true) {
-            System.out.println("Introdu de la tastatura nivelul de intensitate al antrenamentului:");
-            System.out.println("1) Antrenament Usor.");
-            System.out.println("2) Antrenament Mediu.");
-            System.out.println("3) Antrenament Greu.");
+            System.out.println("Enter the intensity level of the workout:");
+            System.out.println("1) Easy");
+            System.out.println("2) Medium");
+            System.out.println("3) Hard");
             int intensityLevel = input.nextInt();
             input.nextLine();
             if (intensityLevel == 1) {
                 addWorkout(new Workout(name, durationMinutes, Workout.IntensityLevel.EASY, price));
-                System.out.println("Antrenamentul Usor a fost adaugat cu succes.");
+                System.out.println("The Easy Workout has been added successfully.");
                 break;
-            }
-            if (intensityLevel == 2) {
+            } else if (intensityLevel == 2) {
                 addWorkout(new Workout(name, durationMinutes, Workout.IntensityLevel.MEDIUM, price));
-                System.out.println("Antrenamentul Mediu a fost adaugat cu succes.");
+                System.out.println("The Medium Workout has been added successfully.");
                 break;
-            }
-            if (intensityLevel == 3) {
+            } else if (intensityLevel == 3) {
                 addWorkout(new Workout(name, durationMinutes, Workout.IntensityLevel.HARD, price));
-                System.out.println("Antrenamentul Greu a fost adaugat cu succes.");
+                System.out.println("The Hard Workout has been added successfully.");
                 break;
-            } else System.out.println("Valoare incorecta. Mai introdu o data o optiune.");
+            } else {
+                System.out.println("Invalid value. Please enter a valid option.");
+            }
         }
     }
 
     @Override
     public void displayMemberships() {
-
         if (clients.isEmpty()) {
-            System.out.println("Nu exista clienti inregistrati.");
+            System.out.println("No clients registered.");
             return;
         }
         for (Client client : clients) {
-            System.out.println("Abonamentele achizitionate de clientul " + client.getName() + " sunt:");
+            System.out.println("Memberships purchased by " + client.getName() + ":");
             for (Membership membership : client.getMemberships()) {
-                membership.getMembershipType();
+                System.out.println("- " + membership.getMembershipType());
             }
+            System.out.println();
         }
     }
 
     @Override
     public void displayTrainers() {
         if (trainers.isEmpty()) {
-            System.out.println("Nu exista antrenori inregistrati.");
+            System.out.println("No trainers registered.");
             return;
         }
+
         int indexTrainer = 1;
+
         for (Trainer trainer : trainers) {
-            System.out.print(indexTrainer + ". ");
-            indexTrainer++;
-            if (trainer instanceof Employee)
-                System.out.println("Antrenorul " + trainer.getName() + " cu varsta de " + trainer.getAge() + " ani cu specializarea " + trainer.getSpecialization() + " care reprezinta un " + trainer.getTrainerType() + " avand salariul de " + (((Employee) trainer).getSalary()) + " lei.");
-            else if (trainer instanceof Collaborator)
-                System.out.println("Antrenorul " + trainer.getName() + " cu varsta de " + trainer.getAge() + " ani cu specializarea " + trainer.getSpecialization() + " care reprezinta un " + trainer.getTrainerType() + " reprezentat de compania " + ((Collaborator) trainer).getCompany());
-            if (trainer.getWorkouts().isEmpty()) System.out.println("Acest antrenor nu preda niciun antrenament.");
-            else {
-                System.out.println("Antrenamentele predate de acest antrenor sunt:");
-                for (Workout workout : trainer.getWorkouts())
-                    System.out.println("Antrenamentul " + workout.getName() + " are durata de " + workout.getDurationMinutes() + " minute, cu nivelul de dificultate " + workout.getIntensityLevel() + ", avand pretul de " + workout.getPrice() + " lei.");
+            System.out.print(indexTrainer++ + ". ");
+
+            if (trainer instanceof Employee employee) {
+                System.out.println(
+                        "Trainer: " + trainer.getName()
+                                + " | Age: " + trainer.getAge()
+                                + " | Specialization: " + trainer.getSpecialization()
+                                + " | Type: " + trainer.getTrainerType()
+                                + " | Salary: " + String.format("%.2f lei", employee.getSalary())
+                );
+            } else if (trainer instanceof Collaborator collaborator) {
+                System.out.println(
+                        "Trainer: " + trainer.getName()
+                                + " | Age: " + trainer.getAge()
+                                + " | Specialization: " + trainer.getSpecialization()
+                                + " | Type: " + trainer.getTrainerType()
+                                + " | Company: " + collaborator.getCompany()
+                );
             }
+
+            if (trainer.getWorkouts().isEmpty()) {
+                System.out.println("This trainer does not teach any workouts.");
+            } else {
+                System.out.println("Assigned workouts:");
+                for (Workout workout : trainer.getWorkouts()) {
+                    System.out.println("- " + workout);
+                }
+            }
+
+            System.out.println();
         }
     }
 
     @Override
     public void displayWorkouts() {
         if (workouts.isEmpty()) {
-            System.out.println("Nu exista antrenamente inregistrate.");
+            System.out.println("No workouts registered.");
             return;
         }
         int indexWorkout = 1;
         for (Workout workout : workouts) {
-            System.out.print(indexWorkout + ". ");
-            indexWorkout++;
-            System.out.println(workout);
+            System.out.println(indexWorkout++ + ". " + workout);
         }
     }
 
     @Override
     public void displayWorkouts(final String name) {
         int indexWorkout = 1;
-        for (Workout workout : workouts)
-            if (workout.getName().equals(name) && workout.getTrainer() == null) {
-                System.out.print(indexWorkout + ". ");
-                indexWorkout++;
-                System.out.println("Antrenamentul " + workout.getName() + " are durata de " + workout.getDurationMinutes() + " minute, cu nivelul de dificultate " + workout.getIntensityLevel() + ", avand pretul de " + workout.getPrice() + " lei. ");
+        for (Workout workout : workouts) {
+            if (workout.getTrainer() == null && workout.getName().equals(name)) {
+                System.out.println(indexWorkout++ + ". " + workout);
             }
+        }
     }
 
     @Override
@@ -334,8 +372,11 @@ public class FitZone implements Fitness {
     @Override
     public List<Workout> getAvailableWorkoutsByName(final String name) {
         List<Workout> availableWorkouts = new ArrayList<>();
-        for (Workout workout : workouts)
-            if (workout.getName().equals(name) && workout.getTrainer() == null) availableWorkouts.add(workout);
+        for (Workout workout : workouts) {
+            if (workout.getName().equals(name) && workout.getTrainer() == null) {
+                availableWorkouts.add(workout);
+            }
+        }
         return availableWorkouts;
     }
 
@@ -343,55 +384,60 @@ public class FitZone implements Fitness {
     public void displayClients() {
         int clientIndex = 1;
         for (Client client : clients) {
-            System.out.print(clientIndex + ". ");
-            System.out.println(client);
-            clientIndex++;
+            System.out.println(clientIndex++ + ". " + client);
         }
     }
 
     @Override
     public void displayClientDetails() {
         if (clients.isEmpty()) {
-            System.out.println("Nu exista clienti inregistrati.");
+            System.out.println("No clients registered.");
             return;
         }
         int index = 1;
         for (Client client : clients) {
-            System.out.print(index + ". ");
-            index++;
-            System.out.println(client);
-            if (client.getMemberships().isEmpty()) System.out.println("Acest client nu are niciun abonament.");
-            else {
-                System.out.println("Abonamentele achizitionate de acest client sunt:");
-                for (Membership membership : client.getMemberships())
+            System.out.println(index++ + ". " + client);
+            if (client.getMemberships().isEmpty()) {
+                System.out.println("This client does not have any memberships.");
+            } else {
+                System.out.println("The memberships purchased by this client are:");
+                for (Membership membership : client.getMemberships()) {
                     System.out.println("- " + membership.getMembershipType());
+                }
             }
-            if (client.getPurchasedWorkoutsCount() == 0)
-                System.out.println("Acest client nu a cumparat niciun antrenament.");
-            else {
-                System.out.println("Antrenamentele cumparate de acest client sunt:");
-                for (Workout workout : client.getWorkouts())
+
+            if (client.getPurchasedWorkoutsCount() == 0) {
+                System.out.println("This client has not purchased any workouts.");
+            } else {
+                System.out.println("The workouts purchased by this client are:");
+                for (Workout workout : client.getWorkouts()) {
                     System.out.println(workout);
+                }
             }
+
+            System.out.println();
         }
     }
 
     @Override
     public void generateReport() {
         if (workouts.isEmpty()) {
-            System.out.println("Nu exista antrenamente inregistrate.");
+            System.out.println("No workouts registered.");
             return;
         }
-        System.out.println("Raport FitZone:");
+        System.out.println("FitZone Report:");
         for (Workout workout : workouts) {
             boolean trainersAvailable = false;
-            System.out.println("Pentru antrenamentul: " + workout.getName());
-            for (Trainer trainer : trainers)
+            System.out.println("For the workout: " + workout.getName());
+            for (Trainer trainer : trainers) {
                 if (trainer.getSpecialization().equals(workout.getName())) {
                     trainersAvailable = true;
-                    System.out.println("Antrenorul " + trainer.getName() + " este disponibil sa predea acest antrenament.");
+                    System.out.println("The trainer " + trainer.getName() + " is available to teach this workout.");
                 }
-            if (!trainersAvailable) System.out.println("Nu exista antrenori disponibili sa predea acest antrenament.");
+            }
+            if (!trainersAvailable) {
+                System.out.println("No trainers available to teach this workout.");
+            }
         }
     }
 }

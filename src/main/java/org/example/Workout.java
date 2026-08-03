@@ -44,14 +44,14 @@ public class Workout {
     @Override
     public String toString() {
         return String.format(
-                "%s - %d minutes, %s, %.2f RON%s",
+                "%s | Duration: %d min | Difficulty: %s | Price: %.2f lei%s",
                 name,
                 durationMinutes,
                 intensityLevel,
                 price,
                 trainer == null
-                        ? ", No trainer assigned"
-                        : ", Trainer: " + trainer.getName()
+                        ? " | No trainer assigned"
+                        : " | Trainer: " + trainer.getName()
         );
     }
 
