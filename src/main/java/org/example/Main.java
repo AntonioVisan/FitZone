@@ -2,77 +2,64 @@ package org.example;
 
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    //main
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        FitZone sala = new FitZone();
-        while(true)
-        {
-            System.out.println("Introduce de la tastatura o optiune: ");
-            System.out.println("1) Adaugare antrenor pentru sala de fitness FitZone+.");
-            System.out.println("2) Adaugare client pentru sala de fitness FitZone+.");
-            System.out.println("3) Adaugare abonament pentru un client existent.");
-            System.out.println("4) Adaugare antrenament pentru sala de fitness FitZone+.");
-            System.out.println("5) Adaugare antrenament pentru un antrenor existent.");
-            System.out.println("6) Adaugare antrenament pentru un client existent.");
-            System.out.println("7) Afisarea abonamentelor achizitionate de clienti. ");
-            System.out.println("8) Afisarea antrenorilor. ");
-            System.out.println("9) Afisarea antrenamentelor. ");
-            System.out.println("10) Afisarea clientilor.");
-            System.out.println("11) Generare raport. ");
-            System.out.println("12) Inchidere aplicatie.");
-            int optiune = input.nextInt();
-            input.nextLine(); //consumare enter
-            if (optiune == 12)
-            {
-                System.out.println("Aplicatia se inchide. La revedere!");
-                break; //iesire aplicatie
+
+    public static void main(final String[] args) {
+        final Scanner input = new Scanner(System.in);
+        final FitZone fitZone = new FitZone();
+
+        while (true) {
+            System.out.println();
+            System.out.println("Choose an option:");
+            System.out.println("1) Add trainer.");
+            System.out.println("2) Add client.");
+            System.out.println("3) Add membership to an existing client.");
+            System.out.println("4) Add workout.");
+            System.out.println("5) Assign workout to an existing trainer.");
+            System.out.println("6) Assign workout to an existing client.");
+            System.out.println("7) Display client memberships.");
+            System.out.println("8) Display trainers.");
+            System.out.println("9) Display workouts.");
+            System.out.println("10) Display clients.");
+            System.out.println("11) Generate report.");
+            System.out.println("12) Exit.");
+
+            final int option = input.nextInt();
+            input.nextLine();
+
+            if (option == 12) {
+                System.out.println("Closing application. Goodbye!");
+                break;
             }
-            switch (optiune) {
-                case 1:
-                    sala.addTrainer(input);
-                    break;
-                case 2:
-                    sala.addClient(input);
-                    break;
-                case 3:
-                    sala.addMembershipForClient(input);
-                    break;
-                case 4:
-                    sala.addWorkout(input);
-                    break;
-                case 5:
-                    sala.addWorkoutForTrainer(input);
-                    break;
-                case 6:
-                    sala.addWorkoutForClient(input);
-                    break;
-                case 7:
-                    System.out.println("Afisarea abonamentelor: ");
-                    sala.displayMemberships();
-                    break;
-                case 8:
-                    System.out.println("Afisarea antrenorilor: ");
-                    sala.displayTrainers();
-                    break;
-                case 9:
-                    System.out.println("Afisarea antrenamentelor: ");
-                    sala.displayWorkouts();
-                    break;
-                case 10:
-                    System.out.println("Afisarea clientilor: ");
-                    sala.displayClientDetails();
-                    break;
-                case 11:
-                    sala.generateReport();
-                    break;
-                default:
-                    System.out.println("Valoare incorecta. Mai citeste o data o optiune.");
+
+            switch (option) {
+                case 1 -> fitZone.addTrainer(input);
+                case 2 -> fitZone.addClient(input);
+                case 3 -> fitZone.addMembershipForClient(input);
+                case 4 -> fitZone.addWorkout(input);
+                case 5 -> fitZone.addWorkoutForTrainer(input);
+                case 6 -> fitZone.addWorkoutForClient(input);
+                case 7 -> {
+                    System.out.println("Client memberships:");
+                    fitZone.displayMemberships();
                 }
+                case 8 -> {
+                    System.out.println("Trainers:");
+                    fitZone.displayTrainers();
+                }
+                case 9 -> {
+                    System.out.println("Workouts:");
+                    fitZone.displayWorkouts();
+                }
+                case 10 -> {
+                    System.out.println("Clients:");
+                    fitZone.displayClientDetails();
+                }
+                case 11 -> fitZone.generateReport();
+                default -> System.out.println("Invalid option. Please try again.");
+            }
         }
+
         input.close();
     }
 }
