@@ -1,18 +1,19 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FitZone implements Fitness {
 
-    private final ArrayList<Trainer> trainers;
-    private final ArrayList<Client> clients;
-    private final ArrayList<Workout> workouts;
+    private final List<Trainer> trainers;
+    private final List<Client> clients;
+    private final List<Workout> workouts;
 
     public FitZone() {
-        this.trainers = new ArrayList<>();
-        this.clients = new ArrayList<>();
-        this.workouts = new ArrayList<>();
+        trainers = new ArrayList<>();
+        clients = new ArrayList<>();
+        workouts = new ArrayList<>();
     }
 
     @Override
@@ -115,8 +116,7 @@ public class FitZone implements Fitness {
     @Override
     public void addMembershipForClient(final Scanner input) {
         Client client = selectClient(input, "Selecteaza index-ul clientului caruia doresti sa ii adaugi un abonament: ");
-        if (client == null)
-            return;
+        if (client == null) return;
         System.out.println("Introdu de la tastatura pretul abonamentului: ");
         double price = input.nextDouble();
         input.nextLine();
@@ -149,11 +149,9 @@ public class FitZone implements Fitness {
     @Override
     public void addWorkoutForClient(final Scanner input) {
         Client client = selectClient(input, "Selecteaza index-ul clientului caruia doresti sa ii adaugi un antrenament: ");
-        if (client == null)
-            return;
+        if (client == null) return;
         Workout workout = selectWorkout(input, client);
-        if (workout == null)
-            return;
+        if (workout == null) return;
         if (client.getPurchasedWorkoutsCount() % 3 == 0 && client.getPurchasedWorkoutsCount() > 0) //daca are multiplu de 3 antrenamente cumparate, se aplica o reducere de 10% la pret
             workout.applyDiscount();
         client.addWorkout(workout);
@@ -192,7 +190,7 @@ public class FitZone implements Fitness {
 
     @Override
     public Workout selectWorkout(final Scanner input, final Trainer trainer) {
-        ArrayList<Workout> availableWorkouts = getAvailableWorkoutsByName(trainer.getSpecialization());
+        List<Workout> availableWorkouts = getAvailableWorkoutsByName(trainer.getSpecialization());
         if (availableWorkouts.isEmpty()) {
             System.out.println("Nu exista antrenamente inregistrate.");
             return null;
@@ -212,11 +210,9 @@ public class FitZone implements Fitness {
     @Override
     public void addWorkoutForTrainer(final Scanner input) {
         Trainer trainer = selectTrainer(input, "Selecteaza index-ul antrenorului caruia doresti sa ii adaugi un antrenament: ");
-        if (trainer == null)
-            return;
+        if (trainer == null) return;
         Workout workout = selectWorkout(input, trainer);
-        if (workout == null)
-            return;
+        if (workout == null) return;
         workout.setTrainer(trainer);
         trainer.addWorkout(workout);
         System.out.println("Antrenamentul a fost atribuit cu succes antrenorului " + trainer.getName() + ".");
@@ -260,7 +256,7 @@ public class FitZone implements Fitness {
     @Override
     public void displayMemberships() {
 
-        if (this.clients.isEmpty()) {
+        if (clients.isEmpty()) {
             System.out.println("Nu exista clienti inregistrati.");
             return;
         }
@@ -274,7 +270,7 @@ public class FitZone implements Fitness {
 
     @Override
     public void displayTrainers() {
-        if (this.trainers.isEmpty()) {
+        if (trainers.isEmpty()) {
             System.out.println("Nu exista antrenori inregistrati.");
             return;
         }
@@ -286,8 +282,7 @@ public class FitZone implements Fitness {
                 System.out.println("Antrenorul " + trainer.getName() + " cu varsta de " + trainer.getAge() + " ani cu specializarea " + trainer.getSpecialization() + " care reprezinta un " + trainer.getTrainerType() + " avand salariul de " + (((Employee) trainer).getSalary()) + " lei.");
             else if (trainer instanceof Collaborator)
                 System.out.println("Antrenorul " + trainer.getName() + " cu varsta de " + trainer.getAge() + " ani cu specializarea " + trainer.getSpecialization() + " care reprezinta un " + trainer.getTrainerType() + " reprezentat de compania " + ((Collaborator) trainer).getCompany());
-            if (trainer.getWorkouts().isEmpty())
-                System.out.println("Acest antrenor nu preda niciun antrenament.");
+            if (trainer.getWorkouts().isEmpty()) System.out.println("Acest antrenor nu preda niciun antrenament.");
             else {
                 System.out.println("Antrenamentele predate de acest antrenor sunt:");
                 for (Workout workout : trainer.getWorkouts())
@@ -298,7 +293,7 @@ public class FitZone implements Fitness {
 
     @Override
     public void displayWorkouts() {
-        if (this.workouts.isEmpty()) {
+        if (workouts.isEmpty()) {
             System.out.println("Nu exista antrenamente inregistrate.");
             return;
         }
@@ -322,26 +317,25 @@ public class FitZone implements Fitness {
     }
 
     @Override
-    public ArrayList<Workout> getWorkouts() {
+    public List<Workout> getWorkouts() {
         return workouts;
     }
 
     @Override
-    public ArrayList<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
     @Override
-    public ArrayList<Trainer> getTrainers() {
+    public List<Trainer> getTrainers() {
         return trainers;
     }
 
     @Override
-    public ArrayList<Workout> getAvailableWorkoutsByName(final String name) {
-        ArrayList<Workout> availableWorkouts = new ArrayList<>();
+    public List<Workout> getAvailableWorkoutsByName(final String name) {
+        List<Workout> availableWorkouts = new ArrayList<>();
         for (Workout workout : workouts)
-            if (workout.getName().equals(name) && workout.getTrainer() == null)
-                availableWorkouts.add(workout);
+            if (workout.getName().equals(name) && workout.getTrainer() == null) availableWorkouts.add(workout);
         return availableWorkouts;
     }
 
@@ -357,7 +351,7 @@ public class FitZone implements Fitness {
 
     @Override
     public void displayClientDetails() {
-        if (this.clients.isEmpty()) {
+        if (clients.isEmpty()) {
             System.out.println("Nu exista clienti inregistrati.");
             return;
         }
@@ -366,8 +360,7 @@ public class FitZone implements Fitness {
             System.out.print(index + ". ");
             index++;
             System.out.println(client);
-            if (client.getMemberships().isEmpty())
-                System.out.println("Acest client nu are niciun abonament.");
+            if (client.getMemberships().isEmpty()) System.out.println("Acest client nu are niciun abonament.");
             else {
                 System.out.println("Abonamentele achizitionate de acest client sunt:");
                 for (Membership membership : client.getMemberships())
@@ -398,8 +391,7 @@ public class FitZone implements Fitness {
                     trainersAvailable = true;
                     System.out.println("Antrenorul " + trainer.getName() + " este disponibil sa predea acest antrenament.");
                 }
-            if (!trainersAvailable)
-                System.out.println("Nu exista antrenori disponibili sa predea acest antrenament.");
+            if (!trainersAvailable) System.out.println("Nu exista antrenori disponibili sa predea acest antrenament.");
         }
     }
 }
