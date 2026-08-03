@@ -33,41 +33,41 @@ public class Main {
             }
             switch (optiune) {
                 case 1:
-                    sala.adaugareAntrenor(input);
+                    sala.addTrainer(input);
                     break;
                 case 2:
-                    sala.adaugareClient(input);
+                    sala.addClient(input);
                     break;
                 case 3:
-                    sala.adaugareAbonamentForClient(input);
+                    sala.addMembershipForClient(input);
                     break;
                 case 4:
-                    sala.adaugareAntrenament(input);
+                    sala.addWorkout(input);
                     break;
                 case 5:
-                    sala.adaugareAntrenamentForAntrenor(input);
+                    sala.addWorkoutForTrainer(input);
                     break;
                 case 6:
-                    sala.adaugareAntrenamentForClient(input);
+                    sala.addWorkoutForClient(input);
                     break;
                 case 7:
                     System.out.println("Afisarea abonamentelor: ");
-                    sala.afiseazaAbonamente();
+                    sala.displayMemberships();
                     break;
                 case 8:
                     System.out.println("Afisarea antrenorilor: ");
-                    sala.afiseazaAntrenori();
+                    sala.displayTrainers();
                     break;
                 case 9:
                     System.out.println("Afisarea antrenamentelor: ");
-                    sala.afiseazaAntrenamente();
+                    sala.displayWorkouts();
                     break;
                 case 10:
                     System.out.println("Afisarea clientilor: ");
-                    sala.afiseazaClientiDetaliat();
+                    sala.displayClientDetails();
                     break;
                 case 11:
-                    sala.generareRaport();
+                    sala.generateReport();
                     break;
                 default:
                     System.out.println("Valoare incorecta. Mai citeste o data o optiune.");

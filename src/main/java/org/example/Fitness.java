@@ -1,31 +1,55 @@
 package org.example;
-import java.util.ArrayList;
-import java.util.Scanner;
-public interface Fitness {
-    //fitness
-    void angajeazaAntrenor(Trainer antrenor);
-    void insereazaAntrenamente(Workout workout);
-    void inserareClient(Client client);
-    void adaugareAntrenor(Scanner input);
-    void adaugareClient(Scanner input);
-    void adaugareAbonamentForClient(Scanner input);
-    void adaugareAntrenament(Scanner input);
-    void adaugareAntrenamentForAntrenor(Scanner input);
-    void adaugareAntrenamentForClient(Scanner input);
-    Client selecteazaClient(Scanner input, String mesaj);
-    Trainer selecteazaAntrenor(Scanner input, String mesaj);
-    Workout selecteazaAntrenament(Scanner input, Client client);
-    Workout selecteazaAntrenament(Scanner input, Trainer antrenor);
-    void afiseazaAbonamente();
-    void afiseazaAntrenori();
-    void afiseazaAntrenamente();
-    void afiseazaAntrenamente(String denumire);
-    ArrayList<Client> getClienti();
-    ArrayList<Trainer> getAntrenori();
-    ArrayList<Workout> getAntrenamente();
-    ArrayList<Workout> getAntrenamenteDisponibileDupaDenumire(String denumire);
-    void afiseazaClienti();
-    void afiseazaClientiDetaliat();
-    void generareRaport();
 
+import java.util.List;
+import java.util.Scanner;
+
+public interface Fitness {
+
+    void hireTrainer(final Trainer trainer);
+
+    void addWorkout(final Workout workout);
+
+    void addClient(final Client client);
+
+    void addTrainer(final Scanner input);
+
+    void addClient(final Scanner input);
+
+    void addMembershipForClient(final Scanner input);
+
+    void addWorkout(final Scanner input);
+
+    void addWorkoutForTrainer(final Scanner input);
+
+    void addWorkoutForClient(final Scanner input);
+
+    Client selectClient(final Scanner input, final String message);
+
+    Trainer selectTrainer(final Scanner input, final String message);
+
+    Workout selectWorkout(final Scanner input, final Client client);
+
+    Workout selectWorkout(final Scanner input, final Trainer trainer);
+    
+    void displayMemberships();
+
+    void displayTrainers();
+
+    void displayWorkouts();
+
+    void displayWorkouts(final String name);
+
+    List<Client> getClients();
+
+    List<Trainer> getTrainers();
+
+    List<Workout> getWorkouts();
+
+    List<Workout> getAvailableWorkoutsByName(final String name);
+
+    void displayClients();
+
+    void displayClientDetails();
+
+    void generateReport();
 }
