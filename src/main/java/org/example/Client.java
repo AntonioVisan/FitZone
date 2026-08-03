@@ -1,40 +1,75 @@
 package org.example;
+
 import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
-    private final String nume;
-    private final Integer varsta;
-    private final ArrayList <Abonament> abonamente=new ArrayList<>();
-    private final ArrayList <Antrenament> antrenamente=new ArrayList<>();
-    public Client(String name, Integer varsta, Abonament abonament) {
-        this.nume = name;
-        this.varsta = varsta;
-        this.abonamente.add(abonament);
+    private final String name;
+    private final int age;
+    private final List<Membership> memberships = new ArrayList<>();
+    private final List<Workout> workouts = new ArrayList<>();
+
+    public Client(final String name, final int age, final Membership membership) {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age must be greater than zero.");
+        }
+
+        if (membership == null) {
+            throw new IllegalArgumentException("Membership cannot be null.");
+        }
+
+        this.name = name;
+        this.age = age;
+        this.memberships.add(membership);
     }
 
-    public String getNume() {
-        return nume;
+    @Override
+    public String toString() {
+        return String.format(
+                "%s - %d years old",
+                name,
+                age
+        );
     }
 
-    public ArrayList<Abonament> getAbonamente() {
-        return abonamente;
+    public String getName() {
+        return name;
     }
 
-    public ArrayList<Antrenament> getAntrenamente()
-    {
-        return antrenamente;
-    }
-    public void adaugaAntrenament(Antrenament antrenament) {
-        this.antrenamente.add(antrenament);
+    public int getAge() {
+        return age;
     }
 
-    public void adaugaAbonament(Abonament abonament) {
-        this.abonamente.add(abonament);
+    public List<Membership> getMemberships() {
+        return memberships;
     }
-    public void getInfo() {
-        System.out.println("Clientul: " + nume + " cu varsta de " + varsta + " de ani. ");
+
+    public List<Workout> getWorkouts() {
+        return workouts;
     }
-    public int AntrenamenteCumparate()
-    {
-        return this.antrenamente.size();
+
+    public void addWorkout(final Workout workout) {
+        if (workout == null) {
+            throw new IllegalArgumentException("Workout cannot be null.");
+        }
+
+        workouts.add(workout);
+    }
+
+    public void addMembership(final Membership membership) {
+        if (membership == null) {
+            throw new IllegalArgumentException("Membership cannot be null.");
+        }
+
+        memberships.add(membership);
+    }
+
+    public int getPurchasedWorkoutsCount() {
+        return workouts.size();
     }
 }
